@@ -3,7 +3,117 @@
 	<head>
 		<title>Gallery</title>
 		<meta charset="UTF-8" />
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+var imgData = {};
+
+$(document).ready(function() {
+	$("#imgTD").mouseenter(function() {
+		$("#imgText").css("bottom", "0px");
+	});
+	
+	$("#imgTD").mouseleave(function() {
+		$("#imgText").css("bottom", "-150px");
+	});
+});
+		</script>
+		<style>
+#container, #container td {
+	border: 1px solid #000000;
+}
+
+td {
+	padding: 0px;
+	text-align: center;
+}
+
+#container {
+	width: 1500px;
+	height: 750px;
+	top: 50%;
+	left: 50%;
+	margin-left: -750px;
+	margin-top: -375px;
+	position: absolute;
+	border-collapse: collapse;
+}
+
+#thumbnails {
+	height: 100px;
+	overflow: hidden;
+}
+
+.arrows {
+	width: 100px;
+	text-align: center;
+}
+
+#mainImage {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#imgContainer {
+	height: 650px;
+	overflow: hidden;
+	position: relative;
+}
+
+#imgBlock {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#imgText {
+	width: 100%;
+	height: 150px;
+	position: absolute;
+	bottom: -150px; /* javascript change to 0px */
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #ffffff;
+	transition: 200ms bottom;
+	text-align: left;
+	max-width: 100%;
+}
+
+#imgText * {
+	margin-left: 25px;
+}
+		</style>
 	</head>
 	<body>
+		<table id="container">
+			<tbody>
+				<tr>
+					<td class="arrows"><</td>
+					<td id="imgTD">
+						<div id="imgContainer">
+							<img src="img/img01.jpg" id="mainImage"/>
+							<div id="imgBlock"></div>
+							<div id="imgText">
+								<h1 id="imgTitle">Title</h1>
+								<div id="imgDetails">Some kind of details section. At this time it does not contain any useful information. Deal with it!<br />Is it a new line?</div>
+							</div>
+						</div>
+					</td>
+					<td class="arrows">></td>
+				</tr>
+				<tr>
+					<td colspan="3" id="thumbnails"></td>
+				</tr>
+			</tbody>
+		</table>
 	</body>
+	<!--
+	
+		Image sources:
+			img01.jpg: https://pixabay.com/photos/astronomy-bright-constellation-dark-1867616/
+			img02.jpg: https://pixabay.com/photos/nature-waters-lake-island-3082832/
+			img03.jpg: https://pixabay.com/illustrations/earth-space-sunlight-sun-rays-1756274/
+	
+	-->
 </html>
