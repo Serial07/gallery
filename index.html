@@ -10,36 +10,31 @@ var imgData = [
 		filename: "img01.jpg",
 		thumb: document.createElement("canvas"),
 		title: "title 01",
-		desc: "desc 01",
-		src: "src 01"
+		desc: 'Image by <a href="https://pixabay.com/users/krystianwin-8237000/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6479019">krystianwin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6479019">Pixabay</a>'
 	},
 	{
 		filename: "img02.jpg",
 		thumb: document.createElement("canvas"),
 		title: "title 02",
-		desc: "desc 02",
-		src: "src 02"
+		desc: 'Image by <a href="https://pixabay.com/users/rihaij-2145/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1033716">rihaij</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1033716">Pixabay</a>'
 	},
 	{
 		filename: "img03.jpg",
 		thumb: document.createElement("canvas"),
 		title: "title 03",
-		desc: "desc 03",
-		src: "src 03"
+		desc: 'Image by <a href="https://pixabay.com/users/klimkin-1298145/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3947174">klimkin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3947174">Pixabay</a>'
 	},
 	{
 		filename: "img04.jpg",
 		thumb: document.createElement("canvas"),
 		title: "title 04",
-		desc: "desc 04",
-		src: "src 04"
+		desc: 'Image by <a href="https://pixabay.com/users/chibimundo-4544098/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3085333">Lucy Chibimundo</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3085333">Pixabay</a>'
 	},
 	{
 		filename: "img05.jpg",
 		thumb: document.createElement("canvas"),
 		title: "title 05",
-		desc: "desc 05",
-		src: "src 05"
+		desc: 'Image by <a href="https://pixabay.com/users/vic951-7719059/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090664">Viktor Kosilov</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090664">Pixabay</a>'
 	}
 	/*
 	template
@@ -47,11 +42,15 @@ var imgData = [
 		filename: "img0.jpg",
 		thumb: document.createElement("canvas"),
 		title: "",
-		desc: "",
-		src: ""
+		desc: ''
 	}
 	*/
 ];
+
+var borders = {
+	normal: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABGCAYAAACQRffVAAAAo0lEQVR4Xu3XwRGAMBDDwKT/oi9fhnSgLB3YEubY67FnP5Z3CVwnjjDCsQYoHQN6xXmP8MxMneo33xY4jhvhOOCFMMKxBigdA3qflg6POGLvcByww6MOGGGEaw34LNWI/vMgjHCsAUrHgPofpjSlYw1QOgbUSlOa0rEGKB0DaqUpTelYA5SOAbXSlKZ0rAFKx4BaaUpTOtYApWNArTSlKR1r4ADPM+9X4qJ7pgAAAABJRU5ErkJggg==",
+	selected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABGCAYAAACQRffVAAABpElEQVR4Xu2SPS5GURRF1xZRKBAqJYPQmYCGRC0q5sAAmAOVqCU0JqAzCEoVQaEQcUQ0JN/n+7HfzUmcV9+77t57PdH4i4gl4AZYlnTb+HnU8sGImAfuv725IOmhZYZmhSNiFnjsUW5O0lOr0k0KR8Q0cAfM9Cj2DCxKemlRuvPCETEFXAErvxS6BlYlvXZdutPCETEJXABrQxS5BNYlvQ1xduwjnRWOiAngDNgYId05sCnpfYQ7Ix3tpHBEfHJPgK2R0nwdPgW2JcUYdwde6arwEbAz8PX+B44l7f7hft+r9sIRcQDsGcIeSto3cH4gFBGd/DruoC5eFXYtmZVThrOaceUqw64ls3LKcFYzrlxl2LVkVk4ZzmrGlasMu5bMyinDWc24cpVh15JZOWU4qxlXrjLsWjIrpwxnNePKVYZdS2bllOGsZly5yrBryaycMpzVjCtXGXYtmZVThrOaceUqw64ls3LKcFYzrlxl2LVkVk4ZzmrGlasMu5bMyinDWc24cpVh15JZOWU4qxlXrjLsWjIrpwxnNePKVYZdS2bl/DvDH9ttJmbc3OSlAAAAAElFTkSuQmCC"
+};
 
 // draw thumbnail images
 for (var i = 0; i < imgData.length; i++) {
