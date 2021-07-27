@@ -7,91 +7,78 @@
 		<script>
 var imgData = [
 	{
-		filename: "img01.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img01",
 		title: "title 01",
 		desc: 'Image by <a href="https://pixabay.com/users/krystianwin-8237000/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6479019">krystianwin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6479019">Pixabay</a>'
 	},
 	{
-		filename: "img02.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img02",
 		title: "title 02",
 		desc: 'Image by <a href="https://pixabay.com/users/rihaij-2145/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1033716">rihaij</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1033716">Pixabay</a>'
 	},
 	{
-		filename: "img03.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img03",
 		title: "title 03",
 		desc: 'Image by <a href="https://pixabay.com/users/klimkin-1298145/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3947174">klimkin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3947174">Pixabay</a>'
 	},
 	{
-		filename: "img04.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img04",
 		title: "title 04",
 		desc: 'Image by <a href="https://pixabay.com/users/chibimundo-4544098/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3085333">Lucy Chibimundo</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3085333">Pixabay</a>'
 	},
 	{
-		filename: "img05.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img05",
 		title: "title 05",
 		desc: 'Image by <a href="https://pixabay.com/users/vic951-7719059/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090664">Viktor Kosilov</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3090664">Pixabay</a>'
 	}
 	/*
 	template
 	{
-		filename: "img0.jpg",
-		thumb: document.createElement("canvas"),
+		filename: "img0",
 		title: "",
 		desc: ''
 	}
 	*/
 ];
 
-var borders = {
-	normal: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABGCAYAAACQRffVAAAAo0lEQVR4Xu3XwRGAMBDDwKT/oi9fhnSgLB3YEubY67FnP5Z3CVwnjjDCsQYoHQN6xXmP8MxMneo33xY4jhvhOOCFMMKxBigdA3qflg6POGLvcByww6MOGGGEaw34LNWI/vMgjHCsAUrHgPofpjSlYw1QOgbUSlOa0rEGKB0DaqUpTelYA5SOAbXSlKZ0rAFKx4BaaUpTOtYApWNArTSlKR1r4ADPM+9X4qJ7pgAAAABJRU5ErkJggg==",
-	selected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAABGCAYAAACQRffVAAABpElEQVR4Xu2SPS5GURRF1xZRKBAqJYPQmYCGRC0q5sAAmAOVqCU0JqAzCEoVQaEQcUQ0JN/n+7HfzUmcV9+77t57PdH4i4gl4AZYlnTb+HnU8sGImAfuv725IOmhZYZmhSNiFnjsUW5O0lOr0k0KR8Q0cAfM9Cj2DCxKemlRuvPCETEFXAErvxS6BlYlvXZdutPCETEJXABrQxS5BNYlvQ1xduwjnRWOiAngDNgYId05sCnpfYQ7Ix3tpHBEfHJPgK2R0nwdPgW2JcUYdwde6arwEbAz8PX+B44l7f7hft+r9sIRcQDsGcIeSto3cH4gFBGd/DruoC5eFXYtmZVThrOaceUqw64ls3LKcFYzrlxl2LVkVk4ZzmrGlasMu5bMyinDWc24cpVh15JZOWU4qxlXrjLsWjIrpwxnNePKVYZdS2bllOGsZly5yrBryaycMpzVjCtXGXYtmZVThrOaceUqw64ls3LKcFYzrlxl2LVkVk4ZzmrGlasMu5bMyinDWc24cpVh15JZOWU4qxlXrjLsWjIrpwxnNePKVYZdS2bl/DvDH9ttJmbc3OSlAAAAAElFTkSuQmCC"
+var gallery = {
+	pos: 0,
+	max: imgData.length - 1,
+	next: function() {
+		this.pos = this.pos == this.max ? 0 : this.pos + 1;
+	},
+	prev: function() {
+		this.pos = this.pos == 0 ? this.max : this.pos - 1;
+	},
+	setPos: function(n) {
+		this.pos = n > this.max ? this.max : (n < 0 ? 0 : n);
+	},
+	load: function() {
+		document.getElementById("mainImage").src = "img/" + imgData[this.pos].filename + ".jpg";
+		document.getElementById("imgTitle").innerHTML = imgData[this.pos].title;
+		document.getElementById("imgDetails").innerHTML = imgData[this.pos].desc;
+		
+		$(".thumbs").removeClass("selected");
+		$("#thumb" + this.pos).toggleClass("selected");
+	}
 };
 
-// draw thumbnail images
-for (var i = 0; i < imgData.length; i++) {
-	imgData[i].thumb.setAttribute("width", "50");
-	imgData[i].thumb.setAttribute("height", "50");
-	var canv = imgData[i].thumb.getContext("2d");
-	var img = document.createElement("img");
-	img.src = "img/" + imgData[i].filename;
-	img.onload = function() { canv.drawImage(img, 0, 0, 50, 50); };
-	img = null;
-}
-
-/*
-
-<canvas width="60" height="70"></canvas>
-
-// thumbnail base
-canv.fillStyle = "color");
-canv.fillRect(0, 10, 60, 60);
-canv.drawImage(imgData[i].thumb, 5, 15, 50, 50);
-
-// selected image (triangle)
-canv.fillStyle = "color";
-canv.moveTo(25, 10);
-canv.lineTo(29.5, 0);
-canv.lineTo(34, 10);
-canv.lineTo(25, 10);
-canv.fill();
-*/
-
 function buildThumbs() {
-	var img = document.createElement("img");
-	img.src = "thumb/" + imgData[i].thumb;
-	img.className = "thumbs";
-	
-	var canv = document.createElement(("canvas"));
-	var ctx = canv.getContext("2d");
-	
+	for (var i = 0; i < imgData.length; i++) {
+		var img = document.createElement("img");
+		img.src = "thumbs/" + imgData[i].filename + ".png";
+		img.className = i == 0 ? "thumbs selected" : "thumbs";
+		img.id = "thumb" + i;
+		img.dataset.posImg = i;
+		
+		document.getElementById("thumbnails").appendChild(img);
+	}
 }
 
 $(document).ready(function() {
+	gallery.load();
+	buildThumbs();
+	
 	$("#imgTD").mouseenter(function() {
 		$("#imgText").css("bottom", "0px");
 	});
@@ -99,14 +86,48 @@ $(document).ready(function() {
 	$("#imgTD").mouseleave(function() {
 		$("#imgText").css("bottom", "-150px");
 	});
+	
+	$("#arrowLeft").click(function() {
+		gallery.prev();
+		gallery.load();
+	});
+	
+	$("#arrowRight").click(function() {
+		gallery.next();
+		gallery.load();
+	});
+	
+	$(".thumbs").click(function() {
+		if (!this.classList.contains("selected")) {
+			gallery.setPos(parseInt(this.dataset.posImg));
+			gallery.load();
+		}
+	});
+	
+	$(document).keyup(function(e) {
+		console.log(e.keyCode);
+		if (e.keyCode == 37) { // left
+			gallery.prev();
+			gallery.load();
+		} else if (e.keyCode == 39) { // right
+			gallery.next();
+			gallery.load();
+		}
+	});
 });
 		</script>
 		<style>
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
-body { font-family: 'Karla', sans-serif; }
+body {
+	font-family: 'Karla', sans-serif;
+	background-color: #B0B0B0;
+	background-image: url("img/bg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 
 #container, #container td {
-	border: 1px solid #000000;
+	/* border: 1px solid #000000; */
 }
 
 td {
@@ -126,7 +147,7 @@ td {
 }
 
 #thumbnails {
-	height: 100px;
+	height: 95px;
 	overflow: hidden;
 }
 
@@ -137,7 +158,18 @@ td {
 	cursor: pointer;
 	font-size: 60px;
 	font-weight: bold;
+	color: #606060;
+	transition: color 200ms;
 }
+
+.arrows:hover { color: #b0b0b0; }
+.arrows:active { color: #202020; }
+
+/*
+#arrowLeft { box-shadow: -8px 8px 10px -3px rgb(96, 96, 96); }
+#arrowRight { box-shadow: 8px 8px 10px -3px rgb(96, 96, 96); }
+#imgTD { box-shadow: 0px 15px 10px -10px rgb(96, 96, 96); }
+*/
 
 img { user-select: none; }
 
@@ -147,7 +179,7 @@ img { user-select: none; }
 }
 
 #imgContainer {
-	height: 650px;
+	height: 655px;
 	overflow: hidden;
 	position: relative;
 }
@@ -173,31 +205,47 @@ img { user-select: none; }
 	max-width: 100%;
 }
 
-#imgText * {
+#imgText > * {
 	margin-left: 25px;
 }
 
 .thumbs {
-	
+	background-image: url("thumbs/normal.png");
+	cursor: pointer;
+	margin: 0px 10px;
+	margin-bottom: 0px;
+	transition: margin-bottom 300ms, box-shadow 300ms;
+	box-shadow: 0px 13px 7px -10px rgb(96, 96, 96);
+}
+
+.thumbs.selected {
+	background-image: url("thumbs/selected.png");
+	margin-bottom: 10px;
+	box-shadow: 0px 12px 7px -8px rgb(0, 0, 0);
+}
+
+#firstRow {
+	background-color: #ffffff;
+	box-shadow: 0px 5px 10px 0px rgb(96, 96, 96);
 }
 		</style>
 	</head>
 	<body>
 		<table id="container">
 			<tbody>
-				<tr>
-					<td class="arrows"><</td>
+				<tr id="firstRow">
+					<td class="arrows" id="arrowLeft"><</td>
 					<td id="imgTD">
 						<div id="imgContainer">
-							<img src="img/img01.jpg" id="mainImage"/>
+							<img src="" id="mainImage"/>
 							<div id="imgBlock"></div>
 							<div id="imgText">
-								<h1 id="imgTitle">Title</h1>
-								<div id="imgDetails">Some kind of details section. At this time it does not contain any useful information. Deal with it!<br />Is it a new line?</div>
+								<h1 id="imgTitle"></h1>
+								<div id="imgDetails"></div>
 							</div>
 						</div>
 					</td>
-					<td class="arrows">></td>
+					<td class="arrows" id="arrowRight">></td>
 				</tr>
 				<tr>
 					<td colspan="3" id="thumbnails"></td>
